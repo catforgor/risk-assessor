@@ -1,0 +1,17 @@
+services:
+  ingestion-service:
+    build: ./services/ingestion-service
+    ports:
+      - "8000:8000"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 256M

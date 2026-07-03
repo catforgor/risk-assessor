@@ -3,6 +3,11 @@ services:
     build: ./services/ingestion-service
     ports:
       - "8000:8000"
+    environment:
+      - TRANSACTIONS_QUEUE_URL=${TRANSACTIONS_QUEUE_URL}
+      - AWS_REGION=eu-west-1
+    volumes:
+      - ${USERPROFILE}/.aws:/home/appuser/.aws:ro
     cap_drop:
       - ALL
     security_opt:
